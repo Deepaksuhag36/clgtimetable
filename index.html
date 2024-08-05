@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Time Table Management System</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.css" />
+  <style>
+    /* CSS Styling */
+    body, html {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f2f5;
+      color: #333;
+    }
+
+    header {
+      background-color: #4CAF50;
+      color: #fff;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    nav .logo {
+      font-size: 1.5em;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    nav ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+    }
+
+    nav ul li {
+      margin-left: 20px;
+    }
+
+    nav ul li a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1em;
+      transition: color 0.3s ease, background-color 0.3s ease;
+      padding: 5px 10px;
+      border-radius: 3px;
+    }
+
+    nav ul li a:hover {
+      color: #4CAF50;
+      background-color: #fff;
+    }
+
+    main {
+      padding: 20px;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    section {
+      margin-bottom: 40px;
+    }
+
+    h1, h2 {
+      margin-bottom: 20px;
+      border-bottom: 2px solid #4CAF50;
+      display: inline-block;
+      padding-bottom: 5px;
+    }
+
+    .calendar-container,
+    .announcement-list,
+    .attendance-table {
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .calendar-container:hover,
+    .announcement-list:hover,
+    .attendance-table:hover {
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .fc-toolbar-title {
+      text-transform: uppercase;
+      font-size: 1.2em;
+    }
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      nav ul li {
+        margin: 10px 0;
+      }
+
+      main {
+        padding: 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 10px;
+      }
+
+      nav .logo {
+        font-size: 1.2em;
+      }
+
+      nav ul li a {
+        font-size: 0.9em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">College Time Table</div>
+      <ul>
+        <li><a href="#dashboard">Dashboard</a></li>
+        <li><a href="#schedule">Schedule</a></li>
+        <li><a href="#announcements">Announcements</a></li>
+        <li><a href="#attendance">Attendance</a></li>
+        <li><a href="#profile">Profile</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="dashboard">
+      <h1>Dashboard</h1>
+      <p>Welcome to the College Time Table Management System! Explore the features to manage your schedules and stay updated.</p>
+    </section>
+
+    <section id="schedule">
+      <h2>Create/Modify Schedule</h2>
+      <div class="calendar-container" id="calendar"></div>
+    </section>
+
+    <section id="announcements">
+      <h2>Announcements</h2>
+      <div class="announcement-list">
+        <p>Announcements go here.</p>
+      </div>
+    </section>
+
+    <section id="attendance">
+      <h2>Attendance Tracking</h2>
+      <div class="attendance-table">
+        <p><b>Attendance records go here.</b></p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 College Time Table Management System</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/5.10.1/main.min.js"></script>
+  <script>
+    // JavaScript for interactivity
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var calendarEl = document.getElementById('calendar');
+
+      var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        events: [
+          { title: 'Math Class', start: '2024-08-01' },
+          { title: 'Physics Lecture', start: '2024-08-02' },
+          { title: 'Chemistry Lab', start: '2024-08-03' },
+          { title: 'Computer Science', start: '2024-08-04' },
+          { title: 'Biology Exam', start: '2024-08-05' }
+        ]
+      });
+
+      calendar.render();
+    });
+
+    // Sample data for announcements and attendance
+    const announcements = [
+      "Class rescheduled for Monday.",
+      "New lab sessions added.",
+      "Midterm exams next week."
+    ];
+
+    const attendanceRecords = [
+      { date: "2024-08-01", status: "Present" },
+      { date: "2024-08-02", status: "Absent" },
+      { date: "2024-08-03", status: "Present" }
+    ];
+
+    // Load announcements
+    const announcementList = document.querySelector('.announcement-list');
+    announcements.forEach(announcement => {
+      const announcementItem = document.createElement('p');
+      announcementItem.textContent = announcement;
+      announcementList.appendChild(announcementItem);
+    });
+
+    // Load attendance records
+    const attendanceTable = document.querySelector('.attendance-table');
+    attendanceRecords.forEach(record => {
+      const recordItem = document.createElement('p');
+      recordItem.textContent = `${record.date}: ${record.status}`;
+      attendanceTable.appendChild(recordItem);
+    });
+  </script>
+</body>
+</html>
